@@ -1,2 +1,46 @@
 steps:
-  - name: "ata"
+  # Passo da leitura de codigo do sonar a partir de um scanner proprio
+  - name: 'gcr.io/cloud-builders/java/javac:8'
+    id: Analise-do-sonar
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        source /workspace/build_vars
+        docker run --rm -e SONAR_HOST_URL=$$SONAR_IP -e SONAR_LOGIN=$$SONAR_TOKEN -v "/workspace/:/usr/src" sonarsource/sonar-scanner-cli -Dsonar.projectKey=$$SONAR_PROJECT -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info -Dsonar.qualitygate.wait=true
+    
+    dir: /workspace
+    secretEnv: ['SONAR_TOKEN', 'SONAR_IP', 'SONAR_PROJECT']
+
+  # Passo que criara a build da imagem do repositorio GIT
+  - name: 'gcr.io/cloud-builders/docker'
+    id: Build-imagem
+    args: ['build', '-t', '[ALTERE AQUI PARA O SEU REPOSITÓRIO ARTIFACT REGISTRY]', '.']
+    
+    waitFor: [Analise-do-sonar]
+
+  # Passo que ira empurrar a imagem para o container registry  
+  - name: 'gcr.io/cloud-builders/docker'
+    id: Push-Imagem
+    entrypoint: /bin/sh
+    args:
+    - -c
+    - |
+      docker push [ALTERE AQUI PARA O SEU REPOSITÓRIO ARTIFACT REGISTRY]
+    
+    waitFor: [Build-imagem]
+
+
+tags: ['cloud-builders-community']
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+availableSecrets:
+  secretManager:
+  - versionName: [ALTERE AQUI PARA O CAMINHO DA SECRET DENTRO DO SECRET MANAGER. EX.: projects/22220000/secrets/SONAR_TOKEN/versions/1]
+    env: 'SONAR_TOKEN'
+  - versionName: [ALTERE AQUI PARA O CAMINHO DA SECRET DENTRO DO SECRET MANAGER]
+    env: 'SONAR_IP'
+  - versionName: [ALTERE AQUI PARA O CAMINHO DA SECRET DENTRO DO SECRET MANAGER]
+    env: 'SONAR_PROJECT'
