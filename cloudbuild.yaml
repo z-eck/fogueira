@@ -19,7 +19,7 @@ steps:
     
     waitFor: [Analise-do-sonar]
 
-  # Passo que ira empurrar a imagem para o container registry  
+  # Passo que ira empurrar a imagem para o artifact registry  
   - name: 'gcr.io/cloud-builders/docker'
     id: Push-Imagem
     entrypoint: /bin/sh
