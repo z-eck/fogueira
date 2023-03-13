@@ -3,15 +3,15 @@
 O Projeto em si, é focado no funcionamento do CI/CD utilizando de serviços em nuvem e ferramentas que auxiliam nesse ciclo.
 ### Ferramentas usadas:
 * [Google Cloud Plataform](https://console.cloud.google.com/)
-	* [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine/docs/concepts/kubernetes-engine-overview?hl=pt-br)
+	* [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine/docs/concepts/kubernetes-engine-overview?hl=pt-br) [AQUI](https://github.com/z-eck/fogueira#passo-2---gke)
 	* [Cloud Shell](https://cloud.google.com/shell/docs/using-cloud-shell?hl=pt-br)
-	* [Artifact Registry](https://cloud.google.com/artifact-registry/docs/overview?hl=pt-br)
-	* [Cloud Build](https://cloud.google.com/build/docs/overview?hl=pt-br)
-	* [Secret Manager](https://cloud.google.com/secret-manager/docs?hl=pt-br#docs)
+	* [Artifact Registry](https://cloud.google.com/artifact-registry/docs/overview?hl=pt-br) [AQUI](https://github.com/z-eck/fogueira#passo-5---artifact-registry)
+	* [Cloud Build](https://cloud.google.com/build/docs/overview?hl=pt-br) [AQUI](https://github.com/z-eck/fogueira#passo-7---cloud-build)
+	* [Secret Manager](https://cloud.google.com/secret-manager/docs?hl=pt-br#docs) [AQUI](https://github.com/z-eck/fogueira#passo-6---secret-manager)
 	* [Identity and Access Management (IAM)](https://cloud.google.com/iam/docs/overview?hl=pt-br)
 * [Kubernetes](https://kubernetes.io/pt-br/docs/home/)
-* [Argo CD](https://argo-cd.readthedocs.io/en/stable/getting_started/)
-* [Sonarqube](https://docs.sonarqube.org/9.8/)
+* [Argo CD](https://argo-cd.readthedocs.io/en/stable/getting_started/) [AQUI](https://github.com/z-eck/fogueira#passo-3---argo-cd)
+* [Sonarqube](https://docs.sonarqube.org/9.8/) [AQUI](https://github.com/z-eck/fogueira#passo-4---sonarqube)
 * Git e GitHub ;)
 #
 
